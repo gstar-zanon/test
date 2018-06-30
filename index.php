@@ -4,6 +4,8 @@
 	<link rel="stylesheet" type="text/css" href="/CSS/main.css">
 </head>
 <body>
-テスト！！
+<?php
+phpinfo();
+?>
 </body>
 </html>
