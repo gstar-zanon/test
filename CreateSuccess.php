@@ -7,5 +7,7 @@
 	<?php require_once __DIR__.'/ClassList/Common.php' ?>
 </head>
 <body>
+<p>ユーザー作成完了しました。</p>
+<button class="button1" onClick="location.href='index'">戻る</button>
 </body>
 </html>
