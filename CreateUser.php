@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-	<title>ユーザー作成</title>
+	<title>ユーザー登録</title>
 	<meta http-equiv="Content-type" content="text/html; charaset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="../CSS/main.css">
 <?php
@@ -29,7 +29,7 @@ $pass2 = htmlspecialchars($pass2);
 	もう一度入力してください。<br/>
 	<input name="pass2" class="text1" type="password" pattern="^([a-zA-Z0-9]{8,25})$"><br/>
 	<br/>
-	<button class="button1" name="check" type="submit">作成</button>
+	<button class="button1" name="check" type="submit">登録</button>
 </form>
 <button class="button1" onClick="location.href='index'">キャンセル</button>
 </p>
