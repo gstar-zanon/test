@@ -4,7 +4,9 @@
 	<title>テストサイト</title>
 	<meta http-equiv="Content-type" content="text/html; charaset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="../CSS/main.css">
-	<?php require_once __DIR__.'/ClassList/Common.php' ?>
+<?php
+require_once __DIR__.'/ClassList/Common.php';
+?>
 </head>
 <body>
 </body>

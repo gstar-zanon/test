@@ -20,8 +20,9 @@ $pass2 = htmlspecialchars($pass2);
 ?>
 </head>
 <body>
+<h2>ユーザー登録</h2>
 <p>
-<form method="post" action="CreateUser" style="display:inline;">
+<form method="post" style="display:inline;">
 	ユーザーIDを入力してください(半角英数字6～20文字)<br/>
 	<input name="uname" class="text1" type="text" pattern="^([a-zA-Z0-9]{6,20})$" value="<?php echo $uname; ?>"><br/>
 	パスワードを入力してください(半角英数字8～25文字以上)<br/>

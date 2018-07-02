@@ -10,10 +10,12 @@
 <img src="/img/タマちゃん.png" width="25%" height="25%"/><br/>
 やあ僕タマちゃん。これから農業ゲームを始めるよ！<br/>
 初めての人はユーザー登録を開始してね。<br/>
-<a href="CreateUser" >ユーザー登録</a>
+<table width="10%">
+	<td><a href="CreateUser" >ユーザー登録</a></td>
+	<td><a href="LoginUser" >ログイン</a></td>
+</table>
 <?php
-$mysql = new mysqli('localhost', 'root', 'mytyan', 'testdb');
-$mysql->close();
+echo session_id();
 ?>
 </body>
 </html>
