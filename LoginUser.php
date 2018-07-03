@@ -59,8 +59,8 @@ if($check ){
 		if($dbcon->login($uname,$pass)){
 			
 			# ログイン成功
-			header('Location:index');
-			exit();
+			//header('Location:index');
+			//exit();
 		}
 		echo "ログインに失敗しました";
 	}

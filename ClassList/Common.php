@@ -8,6 +8,38 @@ class dbcon{
 		$this->mysql = new mysqli('localhost', 'root', 'mytyan', 'testdb');
 	}
 	
+	# ログイン中処理
+	public function session(){
+		/*
+		if($sql = $this->mysql->prepare('SELECT user_name FROM user WHERE session_id = ?')){
+			$sid = session_id();
+			$sql->bind_param('s',$sid);
+			$sql->execute();
+			if($result = $sql->get_result()){
+				$rows = $result->fetch_assoc();
+				session_regenerate_id(true);
+				$_SESSION['uname'] = $rows['uname'];
+				setcookie('sid',session_id(),time() + 259200);
+			}elseif(isset($_COOKIE['sid'])){
+				$sid = $_COOKIE['sid'];
+				$sql->bind_param('s',$sid);
+				$sql->execute();
+				if($result = $sql->get_result()){
+					$rows = $result->fetch_assoc();
+					session_regenerate_id(true);
+				}else{
+					header('Location:LoginUser');
+					exit();
+				}
+			}else{
+				header('Location:LoginUser');
+				exit();
+			}
+			$sql->close();
+		}
+		*/
+	}
+	
 	# ユーザー作成
 	public function createuser($uname,$pass){
 		
@@ -21,7 +53,7 @@ class dbcon{
 	# ユーザーID存在チェック
 	public function checkuid($uname){
 		
-		if($sql = $this->mysql->prepare('SELECT * FROM user WHERE user_name = ?')){
+		if($sql = $this->mysql->prepare('SELECT user_name FROM user WHERE user_name = ?')){
 			$sql->bind_param('s',$uname);
 			$sql->execute();
 			$sql->store_result();
@@ -34,20 +66,22 @@ class dbcon{
 	# ログイン処理
 	public function login($uname,$pass){
 		
-		if($sql = $this->mysql->prepare('SELECT * FROM user WHERE user_name = ? AND pass = SHA2(?,256)')){
+		$success = 0;
+		
+		if($sql = $this->mysql->prepare('SELECT user_name FROM user WHERE user_name = ? AND pass = SHA2(?,256)')){
 			$sql->bind_param('ss',$uname,$pass);
 			$sql->execute();
 			$sql->store_result();
-			
 			if($sql->num_rows()){
 				
 				# ログイン成功
-				$success = 1;
-			}else{
-				
-				# ログイン失敗
-				$success = 0;
-				
+				if($sql = $this->mysql->prepare('UPDATE user SET session_id = ? WHERE user_name = ?')){
+					$success = 1;
+					$sid = session_id();
+					$sql->bind_param('ss',$sid,$uname);
+					$sql->execute();
+					$this->session();
+				}
 			}
 			$sql->close();
 		}
