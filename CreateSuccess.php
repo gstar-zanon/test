@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<html lang="ja">
 <head>
 	<title>ユーザー登録完了</title>
 	<meta http-equiv="Content-type" content="text/html; charaset=UTF-8">

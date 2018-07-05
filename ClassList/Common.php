@@ -10,34 +10,51 @@ class dbcon{
 	
 	# ログイン中処理
 	public function session(){
-		/*
-		if($sql = $this->mysql->prepare('SELECT user_name FROM user WHERE session_id = ?')){
+		
+		if($sql = $this->mysql->prepare('SELECT user_id,user_name FROM user WHERE session_id = ?')){
+			
 			$sid = session_id();
 			$sql->bind_param('s',$sid);
 			$sql->execute();
-			if($result = $sql->get_result()){
-				$rows = $result->fetch_assoc();
+			$sql->store_result();
+			
+			# セッション保持
+			if($sql->num_rows() === 1){
+				$sql->bind_result($uid, $uname);
+				$sql->fetch();
 				session_regenerate_id(true);
-				$_SESSION['uname'] = $rows['uname'];
-				setcookie('sid',session_id(),time() + 259200);
+				$sid = session_id();
+				$_SESSION['uid']   = $uid;
+				$_SESSION['uname'] = $uname;
+				setcookie('sid',$sid,time() + 259200);
+				if($sql = $this->mysql->prepare('UPDATE user SET session_id = ? WHERE user_id = ?')){
+					$sql->bind_param('si',$sid,$uid);
+					$sql->execute();
+				}else return 1;
+				
+			# セッション無し
 			}elseif(isset($_COOKIE['sid'])){
 				$sid = $_COOKIE['sid'];
 				$sql->bind_param('s',$sid);
 				$sql->execute();
-				if($result = $sql->get_result()){
-					$rows = $result->fetch_assoc();
+				$sql->store_result();
+				if($sql->num_rows() === 1){
+					$sql->bind_result($uid, $uname);
+					$sql->fetch();
 					session_regenerate_id(true);
-				}else{
-					header('Location:LoginUser');
-					exit();
-				}
-			}else{
-				header('Location:LoginUser');
-				exit();
-			}
+					$sid = session_id();
+					$_SESSION['uid']   = $uid;
+					$_SESSION['uname'] = $uname;
+					setcookie('sid',$sid,time() + 259200);
+					if($sql = $this->mysql->prepare('UPDATE user SET session_id = ? WHERE user_id = ?')){
+						$sql->bind_param('si',$sid,$uid);
+						$sql->execute();
+					}else return 1;
+				}else return 1;
+			}else return 1;
 			$sql->close();
-		}
-		*/
+		}else return 1;
+		return 0;
 	}
 	
 	# ユーザー作成
@@ -80,7 +97,6 @@ class dbcon{
 					$sid = session_id();
 					$sql->bind_param('ss',$sid,$uname);
 					$sql->execute();
-					$this->session();
 				}
 			}
 			$sql->close();
