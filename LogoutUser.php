@@ -19,6 +19,7 @@ setcookie('sid', "", time() - 3600);
 setcookie(session_name(), '', time()-3600, '/');
 session_destroy();
 ?>
+<meta http-equiv="refresh" content="5;URL=index">
 </head>
 <body>
 ログアウトしました。
