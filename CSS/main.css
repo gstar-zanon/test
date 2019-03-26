@@ -1,11 +1,11 @@
 body{
-	margin:30px;
-	font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
-	background-color:oldlace;
+  margin:30px;
+  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+  background-color:oldlace;
 }
 button.button1{
-	width:100px;
+  width:100px;
 }
 input.text1{
-	width:150px;
+  width:150px;
 }

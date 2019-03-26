@@ -10,8 +10,8 @@ require_once __DIR__.'/ClassList/Common.php';
 # ログイン判定
 $dbcon = new dbcon();
 if($dbcon->session()){
-	header('Location:LoginUser');
-	exit();
+  header('Location:LoginUser');
+  exit();
 }
 ?>
 </head>
