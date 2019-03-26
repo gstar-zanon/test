@@ -5,7 +5,7 @@ class dbcon{
 	
 	# DB接続
 	public function __construct(){
-		$this->mysql = new mysqli('localhost', 'root', 'mytyan', 'testdb');
+		$this->mysql = new mysqli('localhost', '', '', '');
 	}
 	
 	# ログイン中処理
